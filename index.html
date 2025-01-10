@@ -78,33 +78,34 @@
     </div>
 
     <script>
-        // Event listener to detect when Cookiebot script is loaded and handle consent
-        window.addEventListener('load', function () {
-            // Check if Cookiebot is available
-            if (typeof CookieConsent !== 'undefined') {
-                // Listen for consent events using Cookiebot's consent API
-                CookieConsent.consents.given = false; // Default state is false (no consent given)
+         window.addEventListener('load', function() {
+            // Ensure Cookiebot is loaded
+            if (window.CookieConsent) {
 
-                // Use Cookiebot callback to detect changes in consent status
-                window.addEventListener('CookieConsentDeclaration', function () {
-                    const consentStatus = CookieConsent.consents.given;
-                    if (consentStatus) {
-                        console.log('User has accepted cookies');
-                        // Hide the consent banner once consent is given
+                // Listen for the Cookiebot declaration event when user interacts with the banner
+                window.addEventListener('CookieConsentDeclaration', function() {
+                    // Check if the consent has been given
+                    const consentGiven = CookieConsent.consents.given;
+
+                    if (consentGiven) {
+                        console.log("User has accepted cookies");
+                        // Hide the consent banner once the user accepts cookies
                         document.getElementById('cookie-consent-banner').classList.add('hidden');
                     } else {
-                        console.log('User has not accepted cookies');
-                        // Show the consent banner if consent is not given
+                        console.log("User has not accepted cookies");
+                        // Optionally show the consent banner if consent is not given
                         document.getElementById('cookie-consent-banner').classList.remove('hidden');
                     }
                 });
+            } else {
+                console.error("CookieConsent is not available. Make sure the Cookiebot script is loaded.");
             }
         });
 
         // Handle the "Accept" button click event to trigger Cookiebot consent
         document.getElementById('accept-cookies').addEventListener('click', function () {
             if (typeof CookieConsent !== 'undefined') {
-                // Accept the cookies and hide the banner
+                // Accept the cookies
                 CookieConsent.accept();
             }
         });
