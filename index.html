@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +15,8 @@
     data-consenttype="implicit" 
     async>
   </script> -->
-<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="dbab242e-168f-401b-ad59-9df0d1020901"  type="text/javascript"></script>
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="dbab242e-168f-401b-ad59-9df0d1020901"
+        type="text/javascript"></script>
     <style>
         /* Basic Styling for the Landing Page */
         body {
@@ -66,6 +68,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <!-- Main Content of the Landing Page -->
@@ -76,12 +79,25 @@
 
     <!-- Cookie Consent Banner -->
     <div id="cookie-consent-banner" class="cookie-consent-banner hidden">
-        <p>We use cookies to improve your experience. By continuing to visit this site, you agree to our use of cookies. 
+        <p>We use cookies to improve your experience. By continuing to visit this site, you agree to our use of cookies.
             <a href="#">Learn More</a>
         </p>
         <button id="accept-cookies">Accept</button>
     </div>
 
+    <script type="text/javascript">
+        window.addEventListener('CookieConsentDeclaration', function () {
+            // Callback function after consent has been given
+            if (CookieConsent.hasConsented()) {
+                console.log('User has consented to cookies');
+                window.alert("User has consented");
+            } else {
+                console.log('User has not consented to cookies');
+                window.alert("User has not consented");
 
+            }
+        });
+    </script>
 </body>
+
 </html>
