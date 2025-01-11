@@ -7,9 +7,14 @@
     <title>Cookie Consent Landing Page</title>
 
     <!-- Cookiebot Script -->
- 
-    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="fc6bf221-6431-4607-b191-3222a3dc3cfd"  type="text/javascript"></script>
-
+    <!-- <script type="text/javascript" src="https://consent.cookiebot.com/uc.js" 
+    data-cbid="fc6bf221-6431-4607-b191-3222a3dc3cfd" 
+    data-blockingmode="auto" 
+    data-culture="en" 
+    data-consenttype="implicit" 
+    async>
+  </script> -->
+<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="dbab242e-168f-401b-ad59-9df0d1020901"  type="text/javascript"></script>
     <style>
         /* Basic Styling for the Landing Page */
         body {
@@ -77,39 +82,6 @@
         <button id="accept-cookies">Accept</button>
     </div>
 
-    <script>
-         window.addEventListener('load', function() {
-            // Ensure Cookiebot is loaded
-            if (window.CookieConsent) {
-
-                // Listen for the Cookiebot declaration event when user interacts with the banner
-                window.addEventListener('CookieConsentDeclaration', function() {
-                    // Check if the consent has been given
-                    const consentGiven = CookieConsent.consents.given;
-
-                    if (consentGiven) {
-                        console.log("User has accepted cookies");
-                        // Hide the consent banner once the user accepts cookies
-                        document.getElementById('cookie-consent-banner').classList.add('hidden');
-                    } else {
-                        console.log("User has not accepted cookies");
-                        // Optionally show the consent banner if consent is not given
-                        document.getElementById('cookie-consent-banner').classList.remove('hidden');
-                    }
-                });
-            } else {
-                console.error("CookieConsent is not available. Make sure the Cookiebot script is loaded.");
-            }
-        });
-
-        // Handle the "Accept" button click event to trigger Cookiebot consent
-        document.getElementById('accept-cookies').addEventListener('click', function () {
-            if (typeof CookieConsent !== 'undefined') {
-                // Accept the cookies
-                CookieConsent.accept();
-            }
-        });
-    </script>
 
 </body>
 </html>
